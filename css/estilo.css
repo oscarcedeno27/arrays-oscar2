@@ -1,0 +1,247 @@
+/* ===== Taller práctico de Arrays — estilo compartido (tema oscuro) ===== */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap");
+
+:root {
+    color-scheme: dark;
+    --fondo: #0d0d15;
+    --superficie: #171724;
+    --campo: #08080d;          /* mismo tono que usa ejercicio1.js al validar */
+    --borde: #2b2b40;
+    --tinta: #ecebf5;
+    --suave: #9a99b5;
+    --acento: #6a58f2;
+    --acento-claro: #9b8dff;
+    --resalte: #ffc857;
+    --resalte-tinta: #1a1405;
+    --radio: 14px;
+    --fuente: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+    background: var(--fondo);
+    color: var(--tinta);
+    font-family: var(--fuente);
+    font-size: 1.05rem;
+    line-height: 1.55;
+}
+
+/* ----- Títulos ----- */
+h1 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    margin: 2.25rem 0 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--suave);
+}
+
+p { margin: 0.4rem 0; }
+
+/* ----- Enlace "Volver al menú" ----- */
+body > a {
+    display: inline-block;
+    margin: 0 0 1.5rem;
+    color: var(--acento-claro);
+    font-weight: 600;
+    text-decoration: none;
+}
+body > a:hover { text-decoration: underline; }
+
+/* ----- Formularios ----- */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+/* Formulario con etiquetas (ejercicio 3): etiqueta a la izquierda, campo a la derecha */
+form:has(label) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0.9rem 1rem;
+}
+form:has(label) button { grid-column: 1 / -1; }
+
+label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+input {
+    flex: 1 1 200px;
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    font: inherit;
+    color: var(--tinta);
+    background: var(--campo);
+    border: 2px solid var(--borde);
+    border-radius: 10px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input::placeholder { color: #6d6c88; }
+
+input:focus {
+    outline: none;
+    border-color: var(--acento-claro);
+    box-shadow: 0 0 0 4px rgba(155, 141, 255, 0.2);
+}
+
+button {
+    padding: 0.75rem 1.4rem;
+    font: inherit;
+    font-weight: 600;
+    color: #fff;
+    background: var(--acento);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+
+button:hover { background: #5646dc; }
+button:active { transform: translateY(2px); }
+button:focus-visible { outline: 3px solid var(--resalte); outline-offset: 2px; }
+
+/* ----- Listas (nombres, números, estudiantes) ----- */
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul li {
+    padding: 0.4rem 0.9rem;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+ul:empty::before {
+    content: "Aún no hay elementos.";
+    color: var(--suave);
+    font-weight: 400;
+}
+
+/* ----- Resultados destacados ----- */
+#cantidad, #suma, #promedio, #mayor, #menor,
+#total, #productoMayor, #resultado {
+    display: inline-block;
+    margin: 0.25rem 0.4rem 0.25rem 0;
+    padding: 0.5rem 1rem;
+    color: var(--resalte-tinta);
+    background: var(--resalte);
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+#cantidad:empty, #suma:empty, #promedio:empty, #mayor:empty, #menor:empty,
+#total:empty, #productoMayor:empty, #resultado:empty { display: none; }
+
+#resultado { margin-top: 1.25rem; }
+
+/* ----- Tabla (ejercicio 3) ----- */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    background: #1f1f31;
+    color: var(--acento-claro);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #1c1c2c; }
+th:not(:first-child), td:not(:first-child) { text-align: right; }
+
+/* ----- Menú principal (index) ----- */
+ol {
+    display: grid;
+    gap: 0.85rem;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: ejercicio;
+}
+
+ol li { counter-increment: ejercicio; }
+
+ol li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    color: var(--tinta);
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    transition: border-color 0.15s, transform 0.12s;
+}
+
+ol li a::before {
+    content: counter(ejercicio);
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: #fff;
+    background: var(--acento);
+    border-radius: 50%;
+    font-weight: 800;
+}
+
+ol li a:hover {
+    border-color: var(--acento-claro);
+    transform: translateX(4px);
+}
+
+ol li a:focus-visible { outline: 3px solid var(--resalte); outline-offset: 3px; }
+
+/* ----- Móvil ----- */
+@media (max-width: 520px) {
+    body { padding-top: 1.5rem; }
+    button { width: 100%; }
+    form:has(label) { grid-template-columns: 1fr; gap: 0.4rem; }
+    form:has(label) input { margin-bottom: 0.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
